@@ -202,6 +202,7 @@ This guide provides step-by-step instructions for installing Apache Tomcat 9.0.6
 
   ```bash
   git clone  <projectname>
+  mvn package
   ```
 ## Go to the Project
   ```bash
