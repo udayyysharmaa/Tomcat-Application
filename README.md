@@ -193,6 +193,24 @@ This guide provides step-by-step instructions for installing Apache Tomcat 9.0.6
   ```bash
   sudo startTomcat
   ```
+## Go to the Ubuntu Machine 
+  ```bash
+  cd /home/ubuntu
+  ```
+
+## clone the project 
+
+  ```bash
+  git clone  <projectname>
+  ```
+## Go to the Project
+  ```bash
+  cd /home/ubuntu/Tomcat-Application
+  ```
+## Copy the File
+  ```bash
+  cp target/hello-world.war /opt/apache-tomcat-9.0.65/webapps/
+  ```
 
 These commands will control the Tomcat server's operation.
 
