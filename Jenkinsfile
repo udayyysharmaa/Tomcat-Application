@@ -1,29 +1,34 @@
- pipeline {     
-    agent {label 'slave-1'} 
-    
+pipeline {
+    agent any
     tools {
         jdk 'jdk17'
-        maven 'maven3'
-    } 
+        maven 'maven'
+    }
 
     stages {
-        
-         
-        stage('Compile') {
+        stage('Git Clone') {
             steps {
-            sh  "mvn compile"
+                git branch: 'main', url: 'https://github.com/udayyysharmaa/Tomcat-Application.git'
             }
         }
-        
-        stage('tests') {
+        stage('Code Compile') {
             steps {
-                sh "mvn test"
+                sh 'mvn compile'
             }
         }
-        
-        stage('Build') {
+        stage('Code Test') {
             steps {
-                sh "mvn package"
+                sh 'mvn test'
+            }
+        }
+        stage('Code Package') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage('Code Deploy') {
+            steps {
+                deploy adapters: [tomcat9(credentialsId: 'admin', path: '', url: 'http://3.108.234.204:8080/')], contextPath: 'home', onFailure: false, war: 'target/*.war'
             }
         }
     }
