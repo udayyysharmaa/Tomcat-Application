@@ -78,10 +78,8 @@
       <input type="submit" value="Send Message">
     </form>
     <div class="youtube-video">
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/NnkUGzaqqOc" frameborder="0" allowfullscreen></iframe>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/RaCSc8TJiZM" frameborder="0" allowfullscreen></iframe>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/Vwo8zV8zmQU" frameborder="0" allowfullscreen></iframe>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/b45z8f0_Eto" frameborder="0" allowfullscreen></iframe>
+      <iframe width="560" height="315" src="https://hashnode.com/post/clusr80en000p08l533dp8i58" frameborder="0" allowfullscreen></iframe>
+      <iframe width="560" height="315" src="https://hashnode.com/post/clugt9xkb000508l4elgq0ds7" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 </body>
