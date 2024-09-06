@@ -1,8 +1,8 @@
 pipeline {
     agent any
     tools {
-        maven 'maven'
         jdk 'jdk17'
+        maven 'maven'
     }
     environment{
         SONAR_HOME = tool "sonar-scanner"
@@ -24,30 +24,33 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Code Package') {
+        stage('Code package') {
             steps {
                 sh 'mvn clean package'
             }
         }
-        
         stage('Sonar Analysis') {
             steps {
-                    withSonarQubeEnv('sonar') {
-                        sh "$SONAR_HOME/bin/sonar-scanner -Dsonar.projectName=Django-projectforclient -Dsonar.projectKey=Django-Projectforclient -Dsonar.java.binaries=target"
-
+                withSonarQubeEnv('sonar') {
+                    sh "$SONAR_HOME/bin/sonar-scanner -Dsonar.projectName=TomcatApplication -Dsonar.projectKey=TomcatAplication -Dsonar.java.binaries=target "
                 }
             }
         }
-        stage('Sonar Quality Check') {
+        stage('SonarGate Check') {
             steps {
                 timeout(time: 1, unit: 'HOURS') {
                     waitForQualityGate abortPipeline: false
                 }
             }
         }
+        stage('Trivy Check') {
+            steps {
+                sh 'trivy fs --format table -o report.txt .'
+            }
+        }
         stage('Code Deploy') {
             steps {
-                deploy adapters: [tomcat9(credentialsId: 'admin', path: '', url: 'http://13.127.110.176:8080')], contextPath: 'home', onFailure: false, war: 'target/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'admin', path: '', url: 'http://13.127.250.123:8080')], contextPath: 'home', onFailure: false, war: 'target/*.war'
             }
         }
     }
